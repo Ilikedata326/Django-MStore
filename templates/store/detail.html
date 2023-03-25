@@ -1,0 +1,227 @@
+{% extends "store/base.html" %}
+{% load static %}
+
+<title>{% block title %} Detail {% endblock %} </title>
+
+
+{% block content %}
+<!--==== Ecommerce Gallery =====-->
+<br>
+
+<div class="container">
+  <!--================ Description ================-->
+  <div class="container shadow mb-3 bg-info rounded">
+    <div class="detail-title text-center" style="padding-bottom: 0.4px; font-size: 30px; font-weight:bolder;">
+      <h1> وصف المنتج </h1>
+    </div>
+  </div>
+
+  <div class="container shadow ">
+    <div class="row ">
+      <div class="col">
+        <div class="ecommerce-gallery" data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+          <div class="row py-3 shadow-5">
+            <div class="col-12 mb-1">
+              <div class="lightbox">
+                <img src="{{ product.image.url }}" alt="Gallery image 1"
+                  class="ecommerce-gallery-main-img img-fluid  active w-100 big_img mt-1" />
+              </div>
+            </div>
+            {% for img in images %}
+            <div class="col-3 mt-1">
+              <img src="{{ img.image.url }}" data-mdb-img="{{ img.image.url }}" alt="Gallery image 1"
+                class="active w-100   small_img img-fluid" />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row py-4 shadow-5">
+          <div class="col h3" style="font-weight: bold;">
+            {{ product.title }}
+          </div>
+
+          <div style="font-size: 24px;">{{ product.description }}</div>
+          <!--
+          <div>
+            {% if product.in_stock == False %} 
+              <br>
+              <h5> غير متوفر حاليا</h5>
+            {% else %} 
+                <br>
+                <h5 class="h4"> متوفر </h5>
+            {% endif %} 
+              </div>-->
+            <div>
+              <br>
+              <span class="h4" style="font-size: 24; font-weight: 600;"> الثمن :{{ product.price }} درهم </span>
+            </div>
+
+            <div>
+              <br>
+              <div class="h4" style="font-size: 24; font-weight: 600;">
+                الدفع عند الاستلام
+              </div>
+            </div>
+
+              <!--
+        <div>
+          <span class="h3"> الثمن :{{ product.price }} درهم </span>
+        </div> -->
+              <div>
+                <br>
+                <button type="button" class="btn btn-success">
+                  <a href="https://wa.me/+212674116476" class="h5 text-decoration-none "
+                    style="color: white; font-weight:bold;">
+                    للطلب عبر الواتساب</a>
+                </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <!--============== Details ==================-->
+  <div class="container">
+    <div class="container shadow mb-3 bg-info rounded">
+      <div class="detail-title bg-info text-center" style="padding-bottom: 0.4px; font-size: 30px; font-weight:bolder;">
+        <h1>تفاصيل حول المنتج</h1>
+      </div>
+    </div>
+    <div class="conatiner">
+      <div class="container shadow">
+        {{ product.more_detail|safe}}
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <!--========= Real Images 1=========-->
+  <div class="container">
+    <div class="container shadow mb-5 bg-info rounded">
+      <div class="detail-title bg-info text-center" style="padding-bottom: 0.4px; font-size: 30px; font-weight:bolder;">
+        <h1>صور حقيقية</h1>
+      </div>
+    </div>
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+
+      </div>
+    </div>
+
+    <div class="container mb-3 rounded">
+      <br>
+      <br>
+      <div class="container shadow">
+        <div class="multi-carousel-item " style="text-align: center">
+          {% for img in real_images %}
+          <div class="row d-inline w-20">
+            <img src="{{ img.image.url }}" data-mdb-img="{{ img.image.url }}" alt="Table Full of Spices" class="w-10"
+              style="width:50%; height: 50%;" />
+          </div>
+          {% endfor %}
+          <div class="row d-inline">
+            <img src="/media/images/WhatsApp_Image_2023-03-15_at_16.43.04_1_1XL0BHA.jpeg"
+              data-mdb-img="/media/images/WhatsApp_Image_2023-03-15_at_16.43.04_1_1XL0BHA.jpeg"
+              alt="Table Full of Spices" class="w-10" style="width:50%; height: 50%;" />
+          </div>
+
+          <!-- <div class="row d-inline">
+            <img src="/media/images/WhatsApp_Image_2023-03-15_at_16.43.04_nkzCxmn.jpeg" data-mdb-img="/media/images/WhatsApp_Image_2023-03-15_at_16.43.04_nkzCxmn.jpeg" alt="Table Full of Spices"
+              class="w-10" style="width:50%; height: 50%;"/>
+          </div> 
+          
+          <div class="row d-inline">
+            <img src="/media/images/WhatsApp_Image_2023-03-15_at_16.43.03_1_mMewqd7.jpeg" data-mdb-img="/media/images/WhatsApp_Image_2023-03-15_at_16.43.03_1_mMewqd7.jpeg" alt="Table Full of Spices"
+              class="w-10" style="width:50%; height: 50%; margin-top: 4px"/>
+          </div>
+          
+          <div class="row d-inline">
+            <img src="/media/images/WhatsApp_Image_2023-03-15_at_16.43.03_ixLazN3.jpeg" data-mdb-img="/media/images/WhatsApp_Image_2023-03-15_at_16.43.03_ixLazN3.jpeg" alt="Table Full of Spices"
+              class="w-10" style="width:50%; height: 50%; margin-top: 4px"/>
+          </div>-->
+
+
+        </div>
+        <p class="h3"> </p>
+      </div>
+
+      <!-- Carousel wrapper -->
+    </div>
+  </div>
+  <br>
+  <!--==============Real Videos==================-->
+  <div class="container" style="text-align: center;">
+    <div class="container shadow mb-3 bg-info rounded">
+      <div class="detail-title bg-info text-center" style="padding-bottom: 0.4px; font-size: 30px; font-weight:bolder;">
+        <h1>فيدوهات </h1>
+      </div>
+    </div>
+    <br>
+    <div class="container shadow">
+      <!-- Carousel wrapper -->
+      <div id="carouselVideoExample" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-mdb-target="#carouselVideoExample" data-mdb-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+
+        <!--  videos -->
+        <div class="carousel-inner">
+          <!-- Single item -->
+          <div class="carousel-item active">
+            {% for video in videos %}
+            <h2></h2>
+            <video class="img-fluid" autoplay loop muted>
+              <source src="{{ video.video.url }}" type="video/mp4" />
+            </video>
+            {% endfor %}
+            <br>
+            <div class="carousel-caption d-none d-md-block">
+              <!--<h5>First slide label</h5>
+              <p>
+                Nulla vitae elit libero, a pharetra augue mollis interdum.
+              </p>
+            </div>
+          </div>-->
+              <!-- Inner -->
+
+              <!-- Controls -->
+              <button class="carousel-control-prev" type="button" data-mdb-target="#carouselVideoExample"
+                data-mdb-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-mdb-target="#carouselVideoExample"
+                data-mdb-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            <!-- Carousel wrapper -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br> 
+  {% endblock %}
